@@ -24,6 +24,7 @@ from django.conf import settings
 urlpatterns = [
     path('api/submit-link', views.submit_link, name='submit-link'),
     path('admin/', admin.site.urls),
+    path("api/chatbot/", views.chatbot_api, name="chatbot_api"),
 ]
 
 if settings.DEBUG:  # Serve media files only in development

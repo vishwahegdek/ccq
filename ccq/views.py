@@ -8,7 +8,29 @@ import json
 import os
 # from . import chatbot
 from .pipelines.CCQ import main_summarizer
+from .pipelines.chatbot import ChatBot
 # from .pipelines import temp
+
+
+
+# # Initialize the chatbot instance
+chatbot = ChatBot(api_key="gt8Qq1j3x1enSd7rFN3JHgRLE3COytKm")
+
+@csrf_exempt
+def chatbot_api(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            summary = data.get("summary", "")
+            context = data.get("context", "")
+            question = data.get("question", "")
+            # Get response from chatbot
+            response = chatbot.get_response(summary, context, question)
+            return JsonResponse({"response": response}, status=200)
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
+    else:
+        return JsonResponse({"error": "Invalid HTTP method"}, status=400)
 
 
 # @api_view(['POST'])
