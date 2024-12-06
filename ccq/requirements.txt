@@ -1,0 +1,10 @@
+langchain_core==0.3.21
+langchain_mistralai==0.2.2
+mistralai==1.2.3
+moviepy==1.0.3
+openai_whisper==20240930
+yt_dlp==2024.11.18
+Django==5.1.4
+django-cors-headers==4.6.0
+django-rest-framework==0.1.0
+djangorestframework==3.15.2
