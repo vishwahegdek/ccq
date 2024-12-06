@@ -8,6 +8,10 @@ ydl_opts = {
     'outtmpl': vedio_path
 }
 
+# import torch
+# print(torch.cuda.is_available())
+# print(torch.cuda.device_count())
+
 def download_video(video_url):
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([video_url])

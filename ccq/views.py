@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 import os
 # from . import chatbot
-from .pipelines.CCQ import main_summarizer
+from .pipelines.CCQ import summerize,vedio
 from .pipelines.chatbot import ChatBot
 # from .pipelines import temp
 
@@ -40,7 +40,43 @@ def submit_link(request):
         return Response({"msg":"Its working"},status=status.HTTP_200_OK)
     elif request.method == 'POST':
         video_link = request.data.get('video_link')
-        destination, summ = main_summarizer(video_link)
+        summary, time_summary,vedio_loc  = summerize(video_link)
+        # destination, summ = main_summarizer(video_link)
         # link = temp.hello()
         # print(link)
-        return Response({"summary":summ,"video-url":destination},status=status.HTTP_201_CREATED)
+        return Response({"summary":summary,"time-summary":time_summary,"vedio":vedio_loc},status=status.HTTP_201_CREATED)
+
+
+# Assuming the function `vedio` is already defined and returns the video path
+# def vedio(time_summary, vedio_loc):
+#     # Implementation for generating video
+#     return video_path
+
+@api_view(['POST'])
+def generate_video(request):
+    if request.method == 'POST':
+        # Extract data from the request
+        time_summary = request.data.get('time-summary')
+        vedio_loc = request.data.get('vedio')
+        if not time_summary or not vedio_loc:
+            return Response(
+                {"error": "time_summary and vedio_loc are required"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        try:
+            # Call the `vedio` function
+            video_path = vedio(time_summary, vedio_loc)
+
+            # Return the generated video path to the frontend
+            return Response(
+                {"video_path": video_path},
+                status=status.HTTP_200_OK
+            )
+        except Exception as e:
+            # Handle exceptions and return an error response
+            return Response(
+                {"error": str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+

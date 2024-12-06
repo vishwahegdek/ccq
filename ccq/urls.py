@@ -25,6 +25,7 @@ urlpatterns = [
     path('api/submit-link', views.submit_link, name='submit-link'),
     path('admin/', admin.site.urls),
     path("api/chatbot/", views.chatbot_api, name="chatbot_api"),
+    path("api/generate_video", views.generate_video, name="generate_video"),
 ]
 
 if settings.DEBUG:  # Serve media files only in development
