@@ -26,9 +26,9 @@ def summerize(link = "https://www.youtube.com/watch?v=Po4FCqAwIKU"):
     Summery = Summary()
     trans_summery = Summery.get_summary(trans)
     print(f"the SUmmery is  \n          {trans_summery}")
-    return (trans_summery, trans_w_time, vedio_loc)
+    return (trans_summery, trans_w_time)
 
-def vedio(time_summary, vedio_loc):
+def vedio(time_summary):
     # to get the time stamps from transcript
     TimeStamps = TimeStamp()
     print("generating time stamps")
@@ -38,9 +38,8 @@ def vedio(time_summary, vedio_loc):
 
 
     #to crop the vedio
-    destination = ".../media/videos/video.mp4"
     print("On to Cropping")
-    vedioCropper = vedio_croper(vedio_loc, destination)
+    vedioCropper = vedio_croper("./video.mp4")
     vedioCropper.get_vedio(timestamps=time_stamps)
     return 'media/videos/video.mp4'
 

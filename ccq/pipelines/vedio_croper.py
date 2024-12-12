@@ -5,9 +5,8 @@ class vedio_croper:
     '''
     Give me a source path of video and a destination path where I should store the video.
     '''
-    def __init__(self, source, destination):
+    def __init__(self, source):
         self.source = source
-        self.destination = destination
 
     def get_vedio(self, timestamps):
         """
@@ -33,6 +32,6 @@ class vedio_croper:
             final_video = concatenate_videoclips(cropped_clips)
 
             # Write the final video to the destination
-            final_video.write_videofile(self.destination, codec='libx264')
+            final_video.write_videofile("./media/videos/video.mp4", codec='libx264')
         except Exception as e:
             print(f"Error: {e}")

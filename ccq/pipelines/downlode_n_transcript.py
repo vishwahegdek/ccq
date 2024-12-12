@@ -2,9 +2,9 @@ import whisper
 import yt_dlp
 import os
 
-vedio_path = '../video'
+vedio_path = './video.mp4'
 ydl_opts = {
-    'format': 'best',
+    'format': 'bestvideo+bestaudio/best',
     'outtmpl': vedio_path
 }
 

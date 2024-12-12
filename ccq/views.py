@@ -57,16 +57,16 @@ def generate_video(request):
     if request.method == 'POST':
         # Extract data from the request
         time_summary = request.data.get('time-summary')
-        vedio_loc = request.data.get('vedio')
-        if not time_summary or not vedio_loc:
+        # vedio_loc = request.data.get('vedio')
+        if not time_summary:
             return Response(
-                {"error": "time_summary and vedio_loc are required"},
+                {"error": "time_summary "},
                 status=status.HTTP_400_BAD_REQUEST
             )
 
         try:
             # Call the `vedio` function
-            video_path = vedio(time_summary, vedio_loc)
+            video_path = vedio(time_summary)
 
             # Return the generated video path to the frontend
             return Response(
