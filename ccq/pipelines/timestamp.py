@@ -20,8 +20,14 @@ class TimeStamp:
 
         response = client.chat.complete(
             model=self.model,
-            messages=[{"role": "user", "content": f"{w_trans}     Given the following transcript of a video with timestamps, give remove the time where there is not importent aspects of the concept is present in seconds The exact format should be: [(start time 1 ins seconds, end time 1seconds), (start time 2 , end time 2), ...] only give me this list ng else as output"}]
+            messages=[{"role": "user", "content": f"{w_trans}     Given the following transcript of a video with timestamps, give remove the time where there is not important aspects of the concept is present in seconds The exact format should be: [(start time 1 ins seconds, end time 1seconds), (start time 2 , end time 2), ...] only give me this list ng else as output"}]
         )
+
+        # response = client.chat.complete(
+        #     model=self.model,
+        #     messages=[{"role": "user",
+        #                "content": f"{w_trans}     Given the following transcript of a video with timestamps, give me only the timestamps where the important parts of the video and present: [(start time 1 ins seconds, end time 1seconds), (start time 2 , end time 2), ...] only give me this list ng else as output"}]
+        # )
         return ast.literal_eval(response.choices[0].message.content)
 
 

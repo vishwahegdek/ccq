@@ -40,11 +40,11 @@ def submit_link(request):
         return Response({"msg":"Its working"},status=status.HTTP_200_OK)
     elif request.method == 'POST':
         video_link = request.data.get('video_link')
-        summary, time_summary,vedio_loc  = summerize(video_link)
+        summary, time_summary  = summerize(video_link)
         # destination, summ = main_summarizer(video_link)
         # link = temp.hello()
         # print(link)
-        return Response({"summary":summary,"time-summary":time_summary,"vedio":vedio_loc},status=status.HTTP_201_CREATED)
+        return Response({"summary":summary,"time-summary":time_summary},status=status.HTTP_201_CREATED)
 
 
 # Assuming the function `vedio` is already defined and returns the video path
@@ -57,6 +57,8 @@ def generate_video(request):
     if request.method == 'POST':
         # Extract data from the request
         time_summary = request.data.get('time-summary')
+        print(time_summary==True)
+        print(request.data)
         # vedio_loc = request.data.get('vedio')
         if not time_summary:
             return Response(
@@ -66,6 +68,7 @@ def generate_video(request):
 
         try:
             # Call the `vedio` function
+
             video_path = vedio(time_summary)
 
             # Return the generated video path to the frontend

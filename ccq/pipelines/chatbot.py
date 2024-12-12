@@ -71,4 +71,3 @@ class ChatBot:
         })
         # print(result)
         return result.content if hasattr(result, 'content') else str(result)
-

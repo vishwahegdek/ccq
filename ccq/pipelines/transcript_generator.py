@@ -25,9 +25,8 @@ def transcribe_with_timestamps(video_path):
 
     return transcript_with_timestamps
 
-
 if __name__ == "__main__":
-    video_path = "./test5.mp4"  # Replace with your video path
+    video_path = "vedio/full.mp4.webm"  # Replace with your video path
     if not os.path.exists(video_path):
         print(f"Video file '{video_path}' does not exist.")
     else:
